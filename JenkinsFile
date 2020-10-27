@@ -1,0 +1,31 @@
+pipeline{
+    agent any
+    environment{
+        Branch = "${BRANCH_NAME}"
+        version = "${currentDisplay.id}"
+        
+    }
+    stages{
+        stage('SCM Checkout'){
+            steps{
+            
+                git branch: Branch,
+                url: 'https://github.com/Tushar791/AttendancePortal.git'
+            }
+        }
+        stage('clean Workspace'){
+            steps{
+                echo "Cleaning Workspace"
+                cleanWs()
+            }
+        }
+         stage('cloning'){
+            steps{
+                echo "Pulling Code"
+                git branch: Branch,
+                url: 'https://github.com/Tushar791/AttendancePortal.git'
+            }
+        }
+    }
+    
+}
